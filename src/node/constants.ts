@@ -3,8 +3,6 @@ import type { JSONSchemaForNPMPackageJsonFiles } from "@schemastore/package"
 import * as os from "os"
 import * as path from "path"
 
-export const WORKBENCH_WEB_CONFIG_ID = "vscode-workbench-web-configuration"
-
 export function getPackageJson(relativePath: string): JSONSchemaForNPMPackageJsonFiles {
   let pkg = {}
   try {
@@ -17,11 +15,10 @@ export function getPackageJson(relativePath: string): JSONSchemaForNPMPackageJso
 }
 
 export const rootPath = path.resolve(__dirname, "../..")
-export const vsRootPath = path.join(rootPath, "vendor/modules/code-oss-dev")
+export const vsRootPath = path.join(rootPath, "lib/vscode")
 const PACKAGE_JSON = "package.json"
 const pkg = getPackageJson(`${rootPath}/${PACKAGE_JSON}`)
 const codePkg = getPackageJson(`${vsRootPath}/${PACKAGE_JSON}`) || { version: "0.0.0" }
-export const pkgName = pkg.name || "code-server"
 export const version = pkg.version || "development"
 export const commit = pkg.commit || "development"
 export const codeVersion = codePkg.version || "development"
